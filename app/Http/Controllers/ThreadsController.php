@@ -44,7 +44,6 @@ class ThreadsController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request);
         //if(auth()->user()->can('newpost'))
 
         return view('threads.create');
