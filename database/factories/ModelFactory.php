@@ -56,3 +56,10 @@ $factory->define(App\Channel::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+    $name = $faker->word;
+    return [
+        'name'=>$name,
+    ];
+});
+

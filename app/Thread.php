@@ -8,13 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
     protected $guarded = [];
+    public static function boot(){
+        parent::boot();
+        static::addGlobalScope('replyCount',function($query){
+            $query->withCount('replies');
+        });
+    }
     //
     public function path(){
         return '/threads/'.$this->channel->slug.'/'.$this->id;
     }
 
     public function replies(){
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->with('owner');
     }
 
     public function creator(){

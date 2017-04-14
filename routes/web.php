@@ -10,8 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Events\UserRegistered;
+
+Route::get('/sio',function(){
+    return view('socket');
+});
 
 Route::get('/', function () {
+    event(new UserRegistered(request('say')??'hello'));
+    return ;
     return view('welcome');
 });
 
@@ -28,4 +35,4 @@ Route::get('/threads/{channel}/{thread}','ThreadsController@show');
 Route::post('/threads','ThreadsController@store');
 Route::post('/threads/{channel}/{thread}/reply','RepliesController@store');
 
-
+Route::post('/reply/{reply}/favorite','FavoriteController@store');
