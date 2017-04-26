@@ -12,7 +12,7 @@ class ThreadsController extends Controller
 {
     public function __construct(){
         //$this->middleware('auth')->only('store');
-        $this->middleware('auth')->only(['store','create']);
+        $this->middleware('auth')->only(['store','create','destroy']);
     }
     /**
      * Display a listing of the resource.
@@ -117,8 +117,17 @@ class ThreadsController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thread $thread)
+    public function destroy($channel, Thread $thread)
     {
         //
+        $this->authorize('update', $thread);
+
+        $thread->replies()->delete();
+        $thread->delete();
+        if(request()->wantsJson()){
+            return response([], 204);
+        }else{
+            return redirect('/threads');
+        }
     }
 }

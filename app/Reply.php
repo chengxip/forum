@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
+    use RecordsActivity;
     //
     protected $guarded = [];
+    protected $with = ['owner','favorite','thread'];
 
     public function owner(){
         return $this->belongsTo(User::class,'user_id');
@@ -23,5 +25,13 @@ class Reply extends Model
             'user_id'=> $uid
         ]);
         }
+    }
+
+    public function isFavorited(){
+        return $this->favorite->where('user_id',auth()->id())->count();
+    }
+
+    public function thread(){
+        return $this->belongsTo(Thread::class);
     }
 }

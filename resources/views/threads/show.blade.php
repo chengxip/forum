@@ -6,8 +6,19 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="#">{{ $thread->creator->name }} </a> Post:
+                    <div class="level">
+                        <span class="flex">
+                    <a href="/profile/{{ $thread->creator->name }}">{{ $thread->creator->name }} </a> Post:
                     {{ $thread->title }}
+                </span>
+                @can ('update', $thread)
+                    <form action="{{ $thread->path() }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-link">delete</button>
+                    </form>
+                    @endcan
+                </div>
 
                 </div>
 
@@ -31,7 +42,7 @@
             </form>
             @else
             <p class="text-center"> Please <a href="{{ route('login') }}"> Sign in </a> to participate in this discussions.
-                @endif
+            @endif
         </div>
 
         <div class="col-md-4">

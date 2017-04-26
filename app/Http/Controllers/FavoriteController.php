@@ -14,5 +14,6 @@ class FavoriteController extends Controller
     //
     public function store(Reply $reply){
         $reply->doFavorite(auth()->id());
+        return back();
     }
 }

@@ -30,4 +30,17 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany(Role::class,'t_user_role','f_user','f_role');
     }
+
+    public function threads(){
+        return $this->hasMany('App\Thread')->latest();
+    }
+
+    public function activity(){
+        return $this->hasMany(Activity::class);
+   } 
+
+   public function getRouteKeyName(){
+        return 'name';
+   }
+   
 }
