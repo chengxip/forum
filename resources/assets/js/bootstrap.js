@@ -48,13 +48,13 @@ window.axios.defaults.headers.common = {
 //     key: 'your-pusher-key'
 // });
 
+/*
 import Echo from 'laravel-echo';
 
 window.Echo = new Echo({
     broadcaster: 'socket.io',
     host: window.location.hostname + ':6001'
 });
-
 window.Echo.channel(`uregistered`)
     .listen('UserRegistered', (e) => {
         console.log(e.msg);
@@ -63,3 +63,9 @@ window.Echo.private(`uregistered`)
     .listen('UserRegistered', (e) => {
         console.log(e.msg);
     });
+    */
+
+window.events = new Vue()
+window.flash = function(message){
+    window.events.$emit('flash',message);
+}

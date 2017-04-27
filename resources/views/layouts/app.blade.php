@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="//forum.dev:6001/socket.io/socket.io.js"></script>
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -28,6 +29,7 @@
     <div id="app">
         @include('layouts.nav') 
         @yield('content')
+        <flash message="{{ session('flash') }}"></flash>
     </div>
 
     <!-- Scripts -->

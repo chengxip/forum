@@ -69,7 +69,7 @@ class ThreadsController extends Controller
             'title'=> request('title'),
             'body'=> request('body'),
         ]);
-        return redirect($thread->path());
+        return redirect($thread->path())->with('flash','you thread have been created');
     }
 
     /**
@@ -122,7 +122,7 @@ class ThreadsController extends Controller
         //
         $this->authorize('update', $thread);
 
-        $thread->replies()->delete();
+        //$thread->replies()->delete();
         $thread->delete();
         if(request()->wantsJson()){
             return response([], 204);

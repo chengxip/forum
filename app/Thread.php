@@ -11,8 +11,15 @@ class Thread extends Model
     protected $guarded = [];
     public static function boot(){
         parent::boot();
+
         static::addGlobalScope('replyCount',function($query){
             $query->withCount('replies');
+        });
+
+        static::deleting(function($thread){
+            $thread->replies->each(function($reply){
+                $reply->delete();
+            });
         });
 
     }
