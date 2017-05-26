@@ -16,12 +16,16 @@
     <style type="text/css">
         .level{display:flex;align-items:center;}
         .flex{flex:1;}
+        .mr-1{margin-right:1em;}
+        [v-cloak]{display:none;}
     </style>
 
     <!-- Scripts -->
     <script>
-        window.Laravel = {!! json_encode([
+        window.app = {!! json_encode([
             'csrfToken' => csrf_token(),
+            'user'=>Auth::user(),
+            'signedIn' => Auth::check()
         ]) !!};
     </script>
 </head>

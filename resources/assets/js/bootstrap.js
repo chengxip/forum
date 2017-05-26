@@ -18,6 +18,10 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+window.Vue.prototype.authorize = function(handler){
+    user = window.app.user;
+    return user?handler(user):false;
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -28,7 +32,7 @@ window.Vue = require('vue');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common = {
-   // 'X-CSRF-TOKEN': window.Laravel.csrfToken,
+    'X-CSRF-TOKEN': window.app.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };
 

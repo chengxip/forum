@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserRegistered' => [
             'App\Listeners\SendRegisterMail',
         ],
+        'Illuminate\Auth\Events\Registered' => [
+            'App\Listeners\SendRegisterMail',
+        ],
 
     ];
 
