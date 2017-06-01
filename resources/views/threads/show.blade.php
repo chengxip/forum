@@ -28,13 +28,9 @@
                 </div>
             </div>
 
-            <replies :data="{{ $thread->replies }}" @removed="repliesCount --"></replies>
+            <replies  @removed="repliesCount --"></replies>
             <!--
 
-            @foreach ($replies as $reply)
-                @include('threads.reply')
-            @endforeach
-            {{ $replies -> links() }}
             -->
 
 
