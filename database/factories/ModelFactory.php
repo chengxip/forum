@@ -63,3 +63,15 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Dummy::class, function (Faker\Generator $faker) {
+    $name = $faker->word;
+    return [
+        'last'=>$faker->lastName,
+        'first'=>$faker->firstName,
+        'city'=>$faker->city,
+        'province'=>$faker->state,
+        'country'=>$faker->country,
+    ];
+});
+
+
