@@ -22,7 +22,7 @@
 		},
 		methods:{
 			add(data){
-				this.data.push(data);
+				this.items.push(data);
 			},
 			remove(index){
 				this.$emit("removed",index);

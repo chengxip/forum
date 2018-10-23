@@ -17,7 +17,7 @@ Route::get('/sio',function(){
 });
 
 Route::get('/', function () {
-    event(new UserRegistered(request('say')??'hello'));
+    event(new UserRegistered(\App\User::where('name','kik')->first()));
     return ;
     return view('welcome');
 });

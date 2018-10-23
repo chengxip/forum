@@ -41791,7 +41791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		add: function add(data) {
-			this.data.push(data);
+			this.items.push(data);
 		},
 		remove: function remove(index) {
 			this.$emit("removed", index);
